@@ -1,5 +1,5 @@
 import "./App.css";
-// import About from "./components/About";
+import About from "./components/About";
 // import Eabout from "./components/Eabout";
 import Navbar from "./components/Navbar";
 // import Enavbar from "./components/Navbar";
@@ -7,7 +7,7 @@ import Alert from "./components/Alert";
 import TextForm from "./components/TextForm";
 import React from "react";
 import { useState } from "react";
-// import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 function App() {
   const [mode, setMode] = useState("light"); //whether dark mode is enabled or not
@@ -41,31 +41,31 @@ function App() {
   };
   return (
     <>
-      {/* <BrowserRouter> */}
-      {/* <Navbar /> */}
-      <Navbar title="TextUtils" mode={mode} toggleMode={toggleMode} />
-      <Alert alert={alert} />
-      {/* <Enavbar title="TextUtils" mode={mode} toggleMode={toggleMode} /> */}
-      <div className="container my-3">
-        {/* <Routes> */}
-        {/* /users --> component 1
-            /users/home --> component 2 */}
-        {/* <Route exact path="/about" element={<About />}></Route> */}
+      <BrowserRouter>
+        {/* <Navbar />  */}
+        <Navbar title="TextUtils" mode={mode} toggleMode={toggleMode} />
+        <Alert alert={alert} />
+        {/* <Enavbar title="TextUtils" mode={mode} toggleMode={toggleMode} />   */}
+        <div className="container my-3">
+          <Routes>
+            {/* /users --> component 1 */}
+            {/* /users/home --> component 2  */}
+            <Route exact path="/about" element={<About />}></Route>
 
-        {/* <Route */}
-        {/* exact */}
-        {/* path="/" */}
-        {/* element={ */}
-        <TextForm
-          showalert={showAlert}
-          heading="Enter the text to analyse below"
-          mode={mode}
-        />
-        {/* } */}
-        {/* ></Route> */}
-        {/* </Routes> */}
-      </div>
-      {/* </BrowserRouter> */}
+            <Route
+              exact
+              path="/"
+              element={
+                <TextForm
+                  showalert={showAlert}
+                  heading="Enter the text to analyse below"
+                  mode={mode}
+                />
+              }
+            ></Route>
+          </Routes>
+        </div>
+      </BrowserRouter>
     </>
   );
 }
