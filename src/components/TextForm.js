@@ -76,7 +76,10 @@ export default function TextForm(props) {
         <button className="btn btn-primary mx-1 my-1" onClick={handleCopy}>
           Copy text
         </button>
-        <button className="btn btn-primary mx-1 my-1" onClick={handleExtraSpaces}>
+        <button
+          className="btn btn-primary mx-1 my-1"
+          onClick={handleExtraSpaces}
+        >
           Remove extra spaces
         </button>
       </div>
@@ -90,7 +93,7 @@ export default function TextForm(props) {
         <p>
           {
             text.split(" ").filter((element) => {
-              return element.length != 0;
+              return element.length !== 0;
             }).length
           }{" "}
           words and {text.length} characters
