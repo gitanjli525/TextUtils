@@ -11,17 +11,24 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 function App() {
   const [mode, setMode] = useState("light"); //whether dark mode is enabled or not
-  const toggleMode = () => {
+
+  const removeBodyClasses = () => {
+    document.body.classList.remove("bg-light");
+    document.body.classList.remove("bg-dark");
+    document.body.classList.remove("bg-primary");
+    document.body.classList.remove("bg-danger");
+    document.body.classList.remove("bg-success");
+    document.body.classList.remove("bg-warning");
+  };
+
+  const toggleMode = (cls) => {
+    removeBodyClasses();
+    console.log(cls);
+    document.body.classList.add("bg-" + cls);
     if (mode === "light") {
       setMode("dark");
       document.body.style.backgroundColor = "#063a6e";
       showAlert("Dark mode has been enabled", "success");
-      // setInterval(() => {
-      //   document.title = "Textutils is amazing app";
-      // }, 2000);
-      // setInterval(() => {
-      //   document.title = "Install textutils now";
-      // }, 1500);
     } else {
       setMode("light");
       document.body.style.backgroundColor = "white";
@@ -50,7 +57,7 @@ function App() {
           <Routes>
             {/* /users --> component 1 */}
             {/* /users/home --> component 2  */}
-            <Route exact path="/about" element={<About />}></Route>
+            <Route exact path="/about" element={<About mode={mode} />}></Route>
 
             <Route
               exact
@@ -58,7 +65,7 @@ function App() {
               element={
                 <TextForm
                   showalert={showAlert}
-                  heading="Enter the text to analyse below"
+                  heading="Try TextUtils - Word counter, Character counter, Remove extra spaces"
                   mode={mode}
                 />
               }
