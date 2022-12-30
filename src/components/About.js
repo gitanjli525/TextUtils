@@ -1,34 +1,44 @@
-import React, { useState } from "react";
+import React from "react";
 
-export default function About() {
-  const [myStyle, setMyStyle] = useState({
-    color: "black",
-    backgroundColor: "white",
-  });
-
-  const [btntext, setBtnText] = useState("Enable dark mode");
-
-  const toggleStyle = () => {
-    if (myStyle.color === "black") {
-      setMyStyle({
-        color: "white",
-        backgroundColor: "black",
-        border: "1px solid white",
-      });
-      setBtnText("Enable light mode");
-    } else {
-      setMyStyle({
-        color: "black",
-        backgroundColor: "white",
-      });
-      setBtnText("Enable dark mode");
-    }
+export default function About(props) {
+  let myStyle = {
+    color: props.mode === "dark" ? "white" : "black",
+    backgroundColor: props.mode === "dark" ? "rgb(35 91 147)" : "white",
+    border: "2px solid",
+    borderColor: props.mode === "dark" ? "#063a6e" : "white",
   };
 
+  // const [myStyle, setMyStyle] = useState({
+  //   color: "black",
+  //   backgroundColor: "white",
+  // });
+
+  // const [btntext, setBtnText] = useState("Enable dark mode");
+
+  // const toggleStyle = () => {
+  //   if (myStyle.color === "black") {
+  //     setMyStyle({
+  //       color: "white",
+  //       backgroundColor: "black",
+  //       border: "1px solid white",
+  //     });
+  //     setBtnText("Enable light mode");
+  //   } else {
+  //     setMyStyle({
+  //       color: "black",
+  //       backgroundColor: "white",
+  //     });
+  //     setBtnText("Enable dark mode");
+  //   }
+  // };
+
   return (
-    <div className="container" style={myStyle}>
+    <div
+      className="container"
+      style={{ color: props.mode === "dark" ? "white" : "black" }}
+    >
       <h1 className="my-3">About us</h1>
-      <div className="accordion" id="accordionExample" style={myStyle}>
+      <div className="accordion" id="accordionExample">
         <div className="accordion-item">
           <h2 className="accordion-header" id="headingOne">
             <button
@@ -40,7 +50,7 @@ export default function About() {
               aria-expanded="true"
               aria-controls="collapseOne"
             >
-              Analyse your text
+              <strong>Analyse your text</strong>
             </button>
           </h2>
           <div
@@ -51,7 +61,7 @@ export default function About() {
           >
             <div className="accordion-body" style={myStyle}>
               Textutils gives you a way to analyze your text quickly and
-              efficiently. Be it word count, character count or
+              efficiently. Be it word count or character count.
             </div>
           </div>
         </div>
@@ -66,7 +76,7 @@ export default function About() {
               aria-expanded="false"
               aria-controls="collapseTwo"
             >
-              Free to use
+              <strong>Free to use</strong>
             </button>
           </h2>
           <div
@@ -94,7 +104,7 @@ export default function About() {
               aria-expanded="false"
               aria-controls="collapseThree"
             >
-              Browser compatible
+              <strong>Browser compatible</strong>
             </button>
           </h2>
           <div
